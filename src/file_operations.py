@@ -2,9 +2,10 @@ import os
 import requests
 import logging
 
+
 def is_url(path: str) -> bool:
     """Check if a path is a valid URL."""
-    return path.startswith(('http://', 'https://'))
+    return path.startswith(("http://", "https://"))
 
 
 def download_file(url: str, folder: str) -> str:
@@ -16,11 +17,11 @@ def download_file(url: str, folder: str) -> str:
         logging.info(f"Created folder: {folder}")
     local_filename = os.path.join(folder, os.path.basename(url))
 
-    headers = {'User-Agent': 'MyApp/1.0 (example@example.com)'}
+    headers = {"User-Agent": "MyApp/1.0 (example@example.com)"}
     try:
         with requests.get(url, headers=headers, stream=True) as response:
             response.raise_for_status()
-            with open(local_filename, 'wb') as file:
+            with open(local_filename, "wb") as file:
                 for chunk in response.iter_content(chunk_size=8192):
                     file.write(chunk)
     except requests.RequestException as e:

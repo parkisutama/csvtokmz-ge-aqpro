@@ -1,31 +1,58 @@
 # csvtokmz-ge-aqpro
 
-## Purposegenerate_kmz_from_csv(csv)
+## Purpose
 
-Generate KMZ from CSV and Images for Google Earth and Alpine Quest Pro
+Generate KMZ files from CSV data and images for use in Google Earth and Alpine Quest Pro.
 
 ## Features
 
-- Custom Icon: Supported Google Earth Icon via URL defined in CSV File
-- Image Attachment: Supported Image Attachment in each waypoint (via URL or Local Path)
-- Description: Supported Description in each waypoint
+- **Custom Icons**: Supports Google Earth icons via URLs defined in the CSV file.
+- **Image Attachments**: Supports image attachments for each waypoint (via URL or local path).
+- **Descriptions**: Supports descriptions for each waypoint.
+
+## Installation
+
+For Conda User
+
+Create a conda environment using the provided environment.yml file:
+
+```python
+conda env create -f environment.yml
+conda activate csvtokmz-ge-aqpro
+```
+
+For Pip User
+
+Install the required packages using
+
+```python
+pip install -r requirements.txt
+```
 
 ## Usage
 
-1. Prepare CSV File
-2. Prepare Image Files (Optional only if image local path is defined in CSV)
-3. use Jupyter Notebook or Python Script to run the generator
+1. **Prepare CSV File**: Ensure your CSV file is formatted correctly with columns for name, description, latitude, longitude, photo_path, and icon_url.
+2. **Prepare Image Files**: If using local image paths, ensure the images are accessible at the specified paths.
+
+### Using Jupyter Notebook or Python Script
 
 ```python
 # Importing KMZ Generator from CSV
 import sys
-sys.path.append('d:/project/csvtokmz-ge-aqpro/') # Change to your path
+sys.path.append('path/to/your/project')  # Change to your project path
 from src.kml_operations import generate_kmz_from_csv
-csv = "D:/project/csvtokmz-ge-aqpro/data/processed/lokas_peta.csv" # Specify CSV Location File
-```
 
-4. Run the Generator
+csv_file = "path/to/your/csvfile.csv"  # Specify the location of your CSV file
+
+# Run the generator
+generate_kmz_from_csv(csv_file)
+
+## Using Command Line Interface (CLI)
 
 ```python
-generate_kmz_from_csv(csv)
+python main.py generate --csv-file path/to/your/csvfile.csv --output-folder path/to/output/folder
 ```
+
+## License
+
+This project is licensed under the MIT License

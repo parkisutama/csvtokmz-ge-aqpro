@@ -3,6 +3,7 @@ import pandas as pd
 import logging
 from src.file_operations import is_url, download_file
 
+
 def process_media_files(df: pd.DataFrame, folder_map: dict) -> pd.DataFrame:
     """
     Download media files (photos and icons) from URLs and update dataframe paths.
@@ -15,7 +16,9 @@ def process_media_files(df: pd.DataFrame, folder_map: dict) -> pd.DataFrame:
             if pd.notnull(value) and is_url(value):
                 local_filename = os.path.join(folder, os.path.basename(value))
                 if os.path.exists(local_filename):
-                    logging.info(f"File already exists for {column} at index {index}: {local_filename}")
+                    logging.info(
+                        f"File already exists for {column} at index {index}: {local_filename}"
+                    )
                     df.at[index, column] = local_filename
                     continue
 
@@ -24,6 +27,8 @@ def process_media_files(df: pd.DataFrame, folder_map: dict) -> pd.DataFrame:
                     logging.info(f"Downloaded {column} at index {index}: {value}")
                     df.at[index, column] = local_path
                 else:
-                    logging.warning(f"Failed to download {column} at index {index}: {value}")
+                    logging.warning(
+                        f"Failed to download {column} at index {index}: {value}"
+                    )
 
     return df

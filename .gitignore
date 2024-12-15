@@ -1,6 +1,7 @@
 # Report Output and User Generated Files
 notebooks/parkis
 data/
+generated_kmz/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

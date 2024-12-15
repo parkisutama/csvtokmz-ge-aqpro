@@ -1,0 +1,21 @@
+name: csvtokmz-ge-aqpro
+channels:
+  - conda-forge
+dependencies:
+  - gdal
+  - geopandas
+  - geoviews
+  - ipykernel
+  - jupyterlab
+  - pandas
+  - python=3.11
+  - shapely
+  - simplekml
+  - typer
+  - black
+  - ruff
+  - pip
+  - pip:
+      - mkdocs
+      - mkdocs-material
+      - mkdocs-typer # Optional for better typer integration
