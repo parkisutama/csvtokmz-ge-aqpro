@@ -12,7 +12,7 @@ if not os.path.exists(OUTPUT_FOLDER):
     os.makedirs(OUTPUT_FOLDER)
 
 # Configure logging to write to a file inside OUTPUT_FOLDER
-log_file_path = os.path.join(OUTPUT_FOLDER, "download.log")
+log_file_path = os.path.join(OUTPUT_FOLDER, "status.log")
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -98,3 +98,5 @@ def generate_kmz_from_csv(csv_file: str, output_folder: str) -> str:
     create_kmz(kml_file, df, output_file)
 
     logging.info(f"KMZ file saved: {output_file}")
+
+    return output_file
