@@ -5,19 +5,12 @@ import simplekml
 import pandas as pd
 from src.data_processing import process_media_files
 from src.config import PHOTO_FOLDER, ICON_FOLDER, OUTPUT_FOLDER
+from src.logger import setup_logging
 import logging
 
 # Ensure the OUTPUT_FOLDER directory exists
 if not os.path.exists(OUTPUT_FOLDER):
     os.makedirs(OUTPUT_FOLDER)
-
-# Configure logging to write to a file inside OUTPUT_FOLDER
-log_file_path = os.path.join(OUTPUT_FOLDER, "status.log")
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler(log_file_path), logging.StreamHandler()],
-)
 
 
 def create_kml(df: pd.DataFrame, output_kml: str, folder_name: str):
@@ -71,6 +64,8 @@ def generate_kmz_from_csv(csv_file: str, output_folder: str) -> str:
     """
     Main function to generate a KMZ file from a CSV.
     """
+    log_file_name = "status.log"
+    setup_logging(output_folder, log_file_name)
     parent_folder = os.path.join(
         OUTPUT_FOLDER, os.path.splitext(os.path.basename(csv_file))[0]
     )

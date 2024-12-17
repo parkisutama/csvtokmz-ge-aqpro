@@ -9,6 +9,7 @@ from src.file_operations import (
     save_workbook,
 )
 from src.config import IMAGE_EXTENSIONS, HEADERS
+from src.logger import setup_logging
 
 
 def process_media_files(df: pd.DataFrame, folder_map: dict) -> pd.DataFrame:
@@ -89,38 +90,10 @@ def process_images_in_folder(folder, worksheet):
                 )
 
 
-def gps_extraction_logging(output_folder, log_file_name="gps_extraction.log"):
-    """Set up logging to log into a file dynamically created in the output folder."""
-    log_file_path = os.path.join(output_folder, log_file_name)
-    # Create a logger
-    logger = logging.getLogger()
-    logger.setLevel(logging.INFO)
-
-    # Remove any existing handlers to avoid duplication
-    if logger.hasHandlers():
-        logger.handlers.clear()
-
-    # File handler - write to log file
-    file_handler = logging.FileHandler(log_file_path, mode="w", encoding="utf-8")
-    file_handler.setLevel(logging.INFO)
-    file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-    file_handler.setFormatter(file_formatter)
-
-    # Console handler - print to terminal
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.INFO)
-    console_handler.setFormatter(file_formatter)
-
-    # Add handlers to logger
-    logger.addHandler(file_handler)
-    logger.addHandler(console_handler)
-
-    logging.info(f"Logging initialized. Log file: {log_file_path}")
-
-
 def bulk_gps_extraction(folder, output_folder, excel_name):
     """Main function to process images and export data to Excel."""
-    gps_extraction_logging(output_folder)
+    log_file_name = "status.log"
+    setup_logging(output_folder, log_file_name)
     workbook, worksheet = create_workbook_with_headers(HEADERS)
     process_images_in_folder(folder, worksheet)
     save_workbook(workbook, output_folder, excel_name)
