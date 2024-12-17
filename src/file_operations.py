@@ -1,6 +1,7 @@
 import os
 import requests
 import logging
+from openpyxl import Workbook
 
 
 def is_url(path: str) -> bool:
@@ -29,3 +30,23 @@ def download_file(url: str, folder: str) -> str:
         return None
 
     return local_filename
+
+
+## List of Function that mainly use for gps extraction
+
+
+# Create a new workbook with headers defined in config.py
+def create_workbook_with_headers(headers):
+    """Create a new workbook and set up headers."""
+    logging.info("Creating workbook and adding headers.")
+    workbook = Workbook()
+    worksheet = workbook.active
+    worksheet.append(headers)
+    return workbook, worksheet
+
+
+def save_workbook(workbook, output_folder, excel_name):
+    """Save the workbook to the specified location."""
+    output_path = os.path.join(output_folder, excel_name)
+    workbook.save(output_path)
+    logging.info(f"Workbook saved at: {output_path}")
