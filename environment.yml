@@ -16,3 +16,7 @@ dependencies:
   - simplekml
   - typer
   - openpyxl
+  - pip:
+      - mkdocs
+      - mkdocs-material
+      - mkdocs-typer
