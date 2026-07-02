@@ -38,7 +38,7 @@ folium @ file:///home/conda/feedstock_root/build_artifacts/folium_1733730877004/
 fonttools @ file:///D:/bld/fonttools_1733518829516/work
 fqdn @ file:///home/conda/feedstock_root/build_artifacts/fqdn_1733327382592/work/dist
 fsspec @ file:///home/conda/feedstock_root/build_artifacts/fsspec_1733493342231/work
-GDAL==3.10.0
+GDAL==3.13.1
 geopandas @ file:///home/conda/feedstock_root/build_artifacts/geopandas_1733730686107/work
 geoviews @ file:///home/conda/feedstock_root/build_artifacts/geoviews-core_1732868950158/work
 h11 @ file:///home/conda/feedstock_root/build_artifacts/h11_1733327467879/work
